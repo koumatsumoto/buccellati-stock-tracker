@@ -25,10 +25,12 @@ vi.mock("playwright", () => ({
                 evaluate: vi.fn().mockResolvedValue(false), // not disabled
               },
             };
-            return sizeMap[selector] || {
-              count: vi.fn().mockResolvedValue(0),
-              evaluate: vi.fn(),
-            };
+            return (
+              sizeMap[selector] || {
+                count: vi.fn().mockResolvedValue(0),
+                evaluate: vi.fn(),
+              }
+            );
           }),
         }),
       }),
@@ -51,7 +53,7 @@ describe("checkSizesAvailability", () => {
     const expected: SizeAvailability = {
       15: { available: false },
       16: { available: true },
-      17: { available: true }
+      17: { available: true },
     };
 
     expect(result).toEqual(expected);

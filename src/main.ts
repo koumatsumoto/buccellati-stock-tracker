@@ -4,11 +4,11 @@ import { notifySlack } from "./notify-slack.ts";
 export async function main(): Promise<void> {
   console.log("Buccellati Stock Tracker initialized");
   const availability = await checkSizesAvailability();
-  
+
   const message = Object.entries(availability)
-    .map(([size, { available }]) => `サイズ ${size} の在庫: ${available ? 'ある' : 'ない'}`)
-    .join('\n');
-  
+    .map(([size, { available }]) => `サイズ ${size} の在庫: ${available ? "ある" : "ない"}`)
+    .join("\n");
+
   await notifySlack(message);
 }
 

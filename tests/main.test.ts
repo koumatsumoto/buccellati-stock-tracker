@@ -11,7 +11,7 @@ describe("main", () => {
   const mockAvailability = {
     15: { available: true },
     16: { available: false },
-    17: { available: true }
+    17: { available: true },
   };
 
   beforeEach(() => {
@@ -21,17 +21,13 @@ describe("main", () => {
 
   it("should log initialization message, check sizes and notify Slack", async () => {
     const consoleSpy = vi.spyOn(console, "log");
-    
+
     await main();
-    
+
     expect(consoleSpy).toHaveBeenCalledWith("Buccellati Stock Tracker initialized");
     expect(checkSizesAvailability).toHaveBeenCalled();
-    expect(notifySlack).toHaveBeenCalledWith(
-      "サイズ 15 の在庫: ある\n" +
-      "サイズ 16 の在庫: ない\n" +
-      "サイズ 17 の在庫: ある"
-    );
-    
+    expect(notifySlack).toHaveBeenCalledWith("サイズ 15 の在庫: ある\n" + "サイズ 16 の在庫: ない\n" + "サイズ 17 の在庫: ある");
+
     consoleSpy.mockRestore();
   });
 

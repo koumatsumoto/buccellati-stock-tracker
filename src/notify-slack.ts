@@ -4,15 +4,15 @@
  * @throws Error if SLACK_WEBHOOK_URL is not set or if the request fails
  */
 export async function notifySlack(message: string): Promise<void> {
-  const webhookUrl = process.env['SLACK_WEBHOOK_URL'];
+  const webhookUrl = process.env["SLACK_WEBHOOK_URL"];
   if (!webhookUrl) {
-    throw new Error('SLACK_WEBHOOK_URL environment variable is not set');
+    throw new Error("SLACK_WEBHOOK_URL environment variable is not set");
   }
 
   const response = await fetch(webhookUrl, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({ text: message }),
   });
