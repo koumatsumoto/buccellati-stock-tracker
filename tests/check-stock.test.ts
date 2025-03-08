@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { checkSizesAvailability } from "../src/check-stock";
+import { checkSizesAvailability, SizeAvailability } from "../src/check-stock";
 
 // Mock Playwright
 vi.mock("playwright", () => ({
@@ -45,8 +45,16 @@ describe("checkSizesAvailability", () => {
     vi.spyOn(console, "log");
   });
 
-  it("should correctly report availability for all sizes", async () => {
-    await checkSizesAvailability();
+  it("should correctly return availability for all sizes", async () => {
+    const result = await checkSizesAvailability();
+
+    const expected: SizeAvailability = {
+      15: { available: false },
+      16: { available: true },
+      17: { available: true }
+    };
+
+    expect(result).toEqual(expected);
 
     // Verify console output for each size
     expect(console.log).toHaveBeenCalledWith(expect.stringContaining("Size 15 is not available"));
@@ -55,7 +63,7 @@ describe("checkSizesAvailability", () => {
   });
 
   it("should properly initialize and close the browser", async () => {
-    await checkSizesAvailability();
+    const result = await checkSizesAvailability();
 
     // Verify browser lifecycle logs
     expect(console.log).toHaveBeenCalledWith("Launching browser...");
@@ -63,7 +71,7 @@ describe("checkSizesAvailability", () => {
   });
 
   it("should log navigation steps", async () => {
-    await checkSizesAvailability();
+    const result = await checkSizesAvailability();
 
     // Verify navigation logs
     expect(console.log).toHaveBeenCalledWith("Navigating to product page...");
