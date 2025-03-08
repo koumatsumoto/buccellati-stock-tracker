@@ -26,7 +26,11 @@ describe("main", () => {
     
     expect(consoleSpy).toHaveBeenCalledWith("Buccellati Stock Tracker initialized");
     expect(checkSizesAvailability).toHaveBeenCalled();
-    expect(notifySlack).toHaveBeenCalledWith(JSON.stringify(mockAvailability, null, 2));
+    expect(notifySlack).toHaveBeenCalledWith(
+      "サイズ 15 の在庫: ある\n" +
+      "サイズ 16 の在庫: ない\n" +
+      "サイズ 17 の在庫: ある"
+    );
     
     consoleSpy.mockRestore();
   });
