@@ -1,7 +1,8 @@
 import type { SizeAvailability } from "./check-stock.ts";
 
 export function createAvailabilityMessage(availability: SizeAvailability): string {
-  return Object.entries(availability)
-    .map(([size, { available }]) => `サイズ ${size} の在庫: ${available ? "ある" : "ない"}`)
-    .join("\n");
+  const sizes = ["15", "16", "17"] as const;
+  const lines = sizes.map(size => `サイズ ${size} の在庫: ${availability[size].available ? "ある" : "ない"}`);
+  
+  return (availability["15"].available ? "<!channel> \n" : "") + lines.join("\n");
 }

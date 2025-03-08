@@ -3,7 +3,13 @@ import { chromium } from "playwright";
 const PRODUCT_URL = "https://www.buccellati.com/jp_jp/blossoms-vermeil-bracelet-jagbra023525.html";
 
 export type SizeAvailability = {
-  [size: number]: {
+  "15": {
+    available: boolean;
+  };
+  "16": {
+    available: boolean;
+  };
+  "17": {
     available: boolean;
   };
 };
@@ -24,7 +30,11 @@ export async function checkSizesAvailability(): Promise<SizeAvailability> {
     console.log("Checking sizes availability...");
     const sizes = [15, 16, 17];
 
-    const result: SizeAvailability = {};
+    const result: SizeAvailability = {
+      "15": { available: false },
+      "16": { available: false },
+      "17": { available: false }
+    };
 
     for (const size of sizes) {
       const sizeElement = await page.locator(`li[data-text="${size}"]`);
@@ -42,7 +52,7 @@ export async function checkSizesAvailability(): Promise<SizeAvailability> {
         console.log(`Size ${size} option not found`);
       }
 
-      result[size] = { available };
+      result[size.toString() as keyof SizeAvailability] = { available };
     }
 
     return result;
