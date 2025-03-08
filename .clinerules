@@ -20,18 +20,25 @@
 
 作業が完了したら、`npm test` を実行し、テストが通っていることを確認せよ。
 テストが通っていない場合は、失敗しているテストを修正せよ。
-また、作業は部分的に指示している可能性があるため、作業が完了しても直ぐに `git commit` するな。
-ユーザーにレビューを依頼して、`git commit` するかどうかを確認せよ。
+テストが通ったら、ユーザーに変更内容を git commit するか確認せよ。
 
 ## Git の操作
 
-### Git Commit
+### git add
+
+通常 `.clinerules` のファイルは、作業の変更内容に含めるな。
+`.clinerules` を commit する指示がある場合のみ `git add` せよ。
+
+### git commit
 
 `git commit` のコマンドを実行するときは、`-m` オプションでメッセージを必ず設定せよ。
-メッセージは、Conventional Commits の規約に従い、作業内容を簡潔に英語で表現せよ。
-`git commit` する前には、必ずユーザーにレビューを依頼して、承認されたものを実行せよ。
+メッセージのルールは、以下に従え
 
-### Git Diff
+- Conventional Commits の規約に従い、作業内容を簡潔に英語で表現せよ
+  - 例: `feat: add new feature`
+- `git commit` する前には、ユーザーにメッセージが適切かレビューを依頼せよ
+
+### git diff
 
 `git diff` を使うときは `--no-pager` オプションを使い、メッセージが省略されないようにせよ。
 つまり `git --no-pager diff` とせよ。
