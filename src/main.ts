@@ -7,8 +7,12 @@ export async function main(): Promise<void> {
   const availability = await checkSizesAvailability();
 
   const message = createAvailabilityMessage(availability);
+  console.log(message);
 
-  await notifySlack(message);
+  // サイズ15が在庫ありの場合のみSlack通知
+  if (availability["15"].available) {
+    await notifySlack(message);
+  }
 }
 
 // Execute main function if this file is run directly

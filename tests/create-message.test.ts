@@ -13,7 +13,6 @@ describe("createAvailabilityMessage", () => {
     const message = createAvailabilityMessage(availability);
 
     expect(message).toBe(
-      "<!channel> \n" +
       "サイズ 15 の在庫: ある\n" +
       "サイズ 16 の在庫: ない\n" +
       "サイズ 17 の在庫: ある"
